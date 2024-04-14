@@ -67,14 +67,14 @@ class CustomVisualiserListener extends VisualiserListener {
 
         this.executionContext[variableName] = value;
 
-
+        this.statesIndex++
         this.recordState();
         this.statesLenght.push(this.statesIndex)
 
         this.addSnapshotFromNode(ctx);
         this.finalizeSnapshot()
 
-        this.statesIndex++
+        
         this.treeStateIndex++
 
     }
