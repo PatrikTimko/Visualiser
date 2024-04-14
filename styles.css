@@ -1,0 +1,120 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f0f8ff;
+    --text-color: #333;
+    --button-hover-color: #0056b3;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.left-half, .right-half {
+    flex: 1;
+    min-width: 300px;
+}
+
+textarea, input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.output-container {
+    display: flex;
+    justify-content: space-between; /* Distributes space evenly */
+    gap: 20px; /* Sets space between the child elements */
+}
+
+#output, #treeOutput {
+    max-height: 300px;  // Set a fixed maximum height
+    overflow-y: auto;  // Allow vertical scrolling
+    margin-bottom: 20px;  // Add space below the container
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#output {
+    flex: 1.5; /* Takes up 60% of the available space (1.5 parts of 2.5 total parts) */
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#variableOutput {
+    flex: 1; /* Takes up 40% of the available space (1 part of 2.5 total parts) */
+    padding: 10px;
+    background-color: #e8f0fe;
+    border-radius: 5px;
+    border: 1px solid #aac;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-half, .right-half {
+        width: 100%;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+
+    #output, #treeOutput {
+        max-height: 200px;  //
+        width: 100%;  //
+    }
+}
+

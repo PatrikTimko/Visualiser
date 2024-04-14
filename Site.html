@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>ANTLR4 Denotation Visualizer</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+
+    <body>
+    <div class="container">
+        <div class="left-half">
+            <section>
+                <h1>ANTLR4 Denotational Semantics Visualizer</h1>
+                <h2>Description</h2>
+                <p>This Visualiser tool is designed to parse and visualize simple programming language constructs based on a denotational semantic. It supports basic operations such as arithmetic calculations, conditional statements, sequences of actions, and variable assignments. Ideal for educational purposes, it provides a visual insight into the parsing process of programming languages.</p>
+                <h2>Tutorial</h2>
+                <ol>
+                    <li><strong>Input Code</strong>: Enter your code into the text area labeled 'Input'.
+                        The code should follow the defined grammar rules, supporting variable assignments, arithmetic operations, conditional statements, and sequences of actions.</li>
+                    <li><strong>Parse</strong>: Click the 'Parse' button to process your input.
+                        The parser will interpret your code according to the custom grammar and begin the visualization process.</li>
+                    <li><strong>View Results</strong>: After parsing, check the console for a detailed breakdown of the parsing process and a visual representation of the parse tree.
+                        For a summarized output, the 'Output' area will display a confirmation message.</li>
+                </ol>
+                <h2>Grammar Rules</h2>
+                <p>The Visualiser supports a simple syntax for educational purposes. Here are the key grammar rules:</p>
+                <ul>
+                    <li><strong>Variable Assignment</strong>: <code>variable := expression</code></li>
+                    <li><strong>Conditional Statement</strong>: <code>if condition then statement else statement</code></li>
+                    <li><strong>Sequence of Actions</strong>: <code>seq statement; statement</code></li>
+                    <li><strong>Skip Action</strong>: <code>skip</code></li>
+                    <li><strong>Expressions</strong>: Can include integers, variable identifiers, arithmetic operators (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>), comparison operators (<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>), and nested expressions.
+                        If your expression contains comparison or arithmetic operation then use brackets: <br>
+                        <code>(expression operation expression)</code></li>
+
+                </ul>
+            </section>
+            <textarea id="inputText" rows="10" cols="50"></textarea>
+            <div class="button-wrapper">
+                <button class="btnParse" type="submit" id="parseBtn">Parse</button>
+            </div>
+        </div>
+        <div class="right-half">
+            <div class="Denotational-rules">
+                <h2>Denotational Semantics rules</h2>
+                <p><strong>Assignment:</strong> <code>Sds⟦x:=e⟧s = s⟦x ↦ Ɛ⟦e⟧s⟧</code></p>
+                <p><strong>Sequence:</strong> <code>Sds⟦S1;S2⟧ = (Sds⟦S2⟧ ᴑ Sds⟦S1⟧s)</code></p>
+                <p><strong>Condition:</strong> <code>Sds⟦if b then S1 else S2⟧ = cond(ß⟦b⟧, Sds⟦S1⟧, Sds⟦S2⟧)s</code></p>
+            </div>
+            <h2>Output</h2>
+            <div class="output-container">
+                <div id="output">Output will be displayed here.</div>
+                <div id="variableOutput">Variables and their values will be displayed here.</div>
+            </div>
+            <div class="button-container">
+                <button id="prevBtn">Previous</button>
+                <button id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script type ="module" src="src/index.js"></script>
+    </body>
+</html>
+
+
+
+
