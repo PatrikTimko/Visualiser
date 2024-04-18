@@ -74,8 +74,6 @@ button:hover {
 }
 
 #output, #treeOutput {
-    max-height: 300px;  // Set a fixed maximum height
-    overflow-y: auto;  // Allow vertical scrolling
     margin-bottom: 20px;  // Add space below the container
     padding: 10px;
     background-color: #f8f8f8;
