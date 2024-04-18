@@ -67,14 +67,14 @@ class CustomVisualiserListener extends VisualiserListener {
 
         this.executionContext[variableName] = value;
 
-
+        this.statesIndex++
         this.recordState();
         this.statesLenght.push(this.statesIndex)
 
         this.addSnapshotFromNode(ctx);
         this.finalizeSnapshot()
 
-        this.statesIndex++
+        
         this.treeStateIndex++
 
     }
@@ -309,7 +309,6 @@ class CustomVisualiserListener extends VisualiserListener {
             this.currentIndex++;
             this.updateOutput()
         } else if (direction === 'prev' && this.currentIndex > 0) {
-            // Remove the last appended snapshot content
             const treeOutputElement = document.getElementById('output');
             if (treeOutputElement.lastElementChild) {
                 treeOutputElement.removeChild(treeOutputElement.lastElementChild);
@@ -429,7 +428,6 @@ window.onload = function (){
 
         outputElement.style.color = 'black';
         let input = document.getElementById('inputText').value;
-        /*let input = 'seq x:=498 ; seq y:=159 ;seq z:=242 ; if (x < y) then if (x < z) then min:=x else min:=z else min:=y';*/
 
         let chars = new antlr4.InputStream(input);
         let lexer = new VisualiserLexer(chars);

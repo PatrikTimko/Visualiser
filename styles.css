@@ -69,8 +69,8 @@ button:hover {
 
 .output-container {
     display: flex;
-    justify-content: space-between; /* Distributes space evenly */
-    gap: 20px; /* Sets space between the child elements */
+    justify-content: space-between; 
+    gap: 20px; 
 }
 
 #output, #treeOutput {
@@ -82,7 +82,7 @@ button:hover {
 }
 
 #output {
-    flex: 1.5; /* Takes up 60% of the available space (1.5 parts of 2.5 total parts) */
+    flex: 1.5; 
     padding: 10px;
     background-color: #f8f8f8;
     border-radius: 5px;
@@ -90,7 +90,7 @@ button:hover {
 }
 
 #variableOutput {
-    flex: 1; /* Takes up 40% of the available space (1 part of 2.5 total parts) */
+    flex: 1; 
     padding: 10px;
     background-color: #e8f0fe;
     border-radius: 5px;
