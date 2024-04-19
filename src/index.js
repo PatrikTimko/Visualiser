@@ -448,6 +448,11 @@ window.onload = function (){
 
             listener.applyState(listener.currentStateIndex);
             listener.updateOutput()
+
+            document.getElementById('downloadBtn').style.display = 'inline-block'; // Make button visible
+        }
+        else{
+            document.getElementById('downloadBtn').style.display = 'none'; // Make button visible
         }
     });
 
@@ -459,6 +464,33 @@ window.onload = function (){
     previousButton.addEventListener('click', function() {
         listener.applyState(listener.currentStateIndex - 1);
         listener.navigate('prev')
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+        // Assuming 'inputText' and 'treeData' remain unchanged
+        const inputText = document.getElementById('inputText').value; // Assuming an input element with id 'inputText'
+        let combinedData = listener.treeSnapshots.map((snapshot, index) => {
+            const variables = listener.states[index] || {}; // Safely access the states array
+            const variableEntries = Object.entries(variables).map(([key, value]) => `${key}: ${value}`);
+            const variableData = variableEntries.join('\n');
+            return `Snapshot ${index + 1}:\n${snapshot}\nVariables:\n${variableData}`;
+        }).join('\n\n');
+
+        // Format the complete data
+        const dataToDownload = `Input:\n${inputText}\n\nCombined Snapshots and Variable States:\n${combinedData}`;
+
+        // Create a Blob for the data
+        const blob = new Blob([dataToDownload], { type: 'text/plain;charset=utf-8' });
+
+        // Create a download link and trigger it
+        const downloadLink = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        downloadLink.href = url;
+        downloadLink.download = 'parse_data.txt'; // Name of the file to be downloaded
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        URL.revokeObjectURL(url); // Clean up to avoid memory leaks
     });
 
 }

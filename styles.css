@@ -45,6 +45,14 @@ textarea, input[type="text"] {
     margin-top: 20px;
 }
 
+.download-button{
+    text-align: center;
+}
+
+#downloadBtn{
+    display: none;
+}
+
 button {
     padding: 10px 20px;
     margin: 0 10px;
