@@ -59,7 +59,7 @@ class CustomVisualiserListener extends VisualiserListener {
             value = parseInt(expression, 10);
         }
         else if((ctx.exprbool().children.at(0).invokingState) === 57){
-            value = this.executionContext[expression];
+            value = this.evaluateExpression(ctx.exprbool());
         }
         else if((ctx.exprbool().children.at(0).invokingState) === 58){
             value=this.evaluateExpression(ctx.exprbool());
@@ -262,7 +262,8 @@ class CustomVisualiserListener extends VisualiserListener {
             const value = this.executionContext[variableName];
             if (value !== undefined) {
                 return value;
-            } else {
+            }
+            else {
                 document.getElementById('output').style.color = 'red';
                 document.getElementById('output').innerHTML+=`<div>Undefined variable name: '${variableName}'</div>`;
                 throw new Error(`Undefined variable name: '${variableName}'`);
@@ -378,7 +379,6 @@ class CustomVisualiserListener extends VisualiserListener {
             });
         }
         return sourceCode.trim();
-
     }
 
     addSnapshotFromNode(ctx) {
@@ -449,10 +449,10 @@ window.onload = function (){
             listener.applyState(listener.currentStateIndex);
             listener.updateOutput()
 
-            document.getElementById('downloadBtn').style.display = 'inline-block'; // Make button visible
+            document.getElementById('downloadBtn').style.display = 'inline-block';
         }
         else{
-            document.getElementById('downloadBtn').style.display = 'none'; // Make button visible
+            document.getElementById('downloadBtn').style.display = 'none';
         }
     });
 
@@ -468,29 +468,26 @@ window.onload = function (){
 
     document.getElementById('downloadBtn').addEventListener('click', function() {
         // Assuming 'inputText' and 'treeData' remain unchanged
-        const inputText = document.getElementById('inputText').value; // Assuming an input element with id 'inputText'
+        const inputText = document.getElementById('inputText').value;
         let combinedData = listener.treeSnapshots.map((snapshot, index) => {
-            const variables = listener.states[index] || {}; // Safely access the states array
+            const variables = listener.states[index] || {};
             const variableEntries = Object.entries(variables).map(([key, value]) => `${key}: ${value}`);
             const variableData = variableEntries.join('\n');
             return `Snapshot ${index + 1}:\n${snapshot}\nVariables:\n${variableData}`;
         }).join('\n\n');
 
-        // Format the complete data
         const dataToDownload = `Input:\n${inputText}\n\nCombined Snapshots and Variable States:\n${combinedData}`;
 
-        // Create a Blob for the data
         const blob = new Blob([dataToDownload], { type: 'text/plain;charset=utf-8' });
 
-        // Create a download link and trigger it
         const downloadLink = document.createElement('a');
         const url = URL.createObjectURL(blob);
         downloadLink.href = url;
-        downloadLink.download = 'parse_data.txt'; // Name of the file to be downloaded
+        downloadLink.download = 'parse_data.txt';
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
-        URL.revokeObjectURL(url); // Clean up to avoid memory leaks
+        URL.revokeObjectURL(url);
     });
 
 }

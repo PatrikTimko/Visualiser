@@ -9,8 +9,11 @@ statement: assignment
          ;
 
 assignment: INTID ':=' exprbool;
+
 condition: 'if' comparators 'then' statement 'else' statement ;
-sequence: 'seq' statement ';' statement ;
+
+sequence: statement ';' statement ;
+
 skip: 'skip' ;
 
 
